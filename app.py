@@ -5,6 +5,8 @@ import AdvancedHTMLParser
 import html_to_json
 
 app = flask.Flask(__name__)
+
+
 app.config["DEBUG"] = True
 
 @app.route('/', methods=['GET'])
@@ -16,7 +18,7 @@ def home():
     table = parser.getElementsByTagName("table")[0].outerHTML
     ##print(table)
     table = table.replace('<td','<th',5)
-    table = table.replace('/td>','/th>',5)
+    table = table.replace('/td>','/th>',5   )
     print("-----------------------------------")
     print(table)
     print("-----------------------------------")
@@ -24,4 +26,7 @@ def home():
     print(json)
     return jsonify(json)
 
-app.run()
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+else:
+    app.run()
